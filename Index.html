@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adesina Isreal | SWAL-AI Architect & Creative Technologist</title>
+    <meta name="description" content="CEO of Visual EAZE Studios | Building SWAL-AI, Linkxus, Future Stack Academy | Cybersecurity & Creative Tech">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        gold: {
+                            400: '#FFD700',
+                            500: '#FFC700',
+                            600: '#FFA500',
+                        },
+                        dark: {
+                            900: '#0a0a0a',
+                            800: '#121212',
+                            700: '#1a1a1a',
+                            600: '#2a2a2a',
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 5px #FFD700, 0 0 10px #FFD700' },
+                            '100%': { boxShadow: '0 0 20px #FFD700, 0 0 30px #FFA500' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #e5e5e5;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6347 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.1);
+        }
+        
+        .terminal-cursor::after {
+            content: '_';
+            animation: blink 1s step-end infinite;
+            color: #FFD700;
+        }
+        
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        
+        .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .noise {
+            position: relative;
+        }
+        
+        .noise::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .project-card {
+            background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .project-card:hover::before {
+            left: 100%;
+        }
+        
+        .tag {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            color: #FFD700;
+        }
+
+        /* Magazine Image Styling */
+        .magazine-showcase {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            border: 2px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .magazine-showcase img {
+            transition: transform 0.5s ease, filter 0.3s ease;
+            filter: grayscale(30%) contrast(1.1);
+        }
+
+        .magazine-showcase:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%) contrast(1.2);
+        }
+
+        .magazine-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .magazine-showcase:hover .magazine-overlay {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased noise">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-dark-900/80 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <img src="swal-logo.svg" alt="SWAL" class="w-10 h-10 animate-pulse-slow">
+                    <span class="font-mono font-bold text-xl gradient-text">SWAL-AI</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-400 hover:text-gold-400 transition-colors text-sm font-medium">About</a>
+                    <a href="#projects" class="text-gray-400 hover:text-gold-400 transition-colors text-sm font-medium">Projects</a>
+                    <a href="#visuals" class="text-gray-400 hover:text-gold-400 transition-colors text-sm font-medium">Visuals</a>
+                    <a href="#blog" class="text-gray-400 hover:text-gold-400 transition-colors text-sm font-medium">Blog</a>
+                    <a href="#contact" class="px-4 py-2 bg-gold-400/10 border border-gold-400/30 text-gold-400 rounded-full text-sm font-medium hover:bg-gold-400/20 transition-all">
+                        Get in Touch
+                    </a>
+                </div>
+                
+                <button id="mobile-menu-btn" class="md:hidden text-gray-400 hover:text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-800 border-b border-white/5">
+            <div class="px-4 pt-2 pb-4 space-y-2">
+                <a href="#about" class="block px-3 py-2 text-gray-400 hover:text-gold-400">About</a>
+                <a href="#projects" class="block px-3 py-2 text-gray-400 hover:text-gold-400">Projects</a>
+                <a href="#visuals" class="block px-3 py-2 text-gray-400 hover:text-gold-400">Visuals</a>
+                <a href="#blog" class="block px-3 py-2 text-gray-400 hover:text-gold-400">Blog</a>
+                <a href="#contact" class="block px-3 py-2 text-gold-400">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-16 grid-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8 z-10">
+                    <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-gold-400/10 border border-gold-400/20 text-gold-400 text-sm font-mono">
+                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                        <span>CEO, Visual EAZE Studios</span>
+                    </div>
+                    
+                    <h1 class="text-5xl md:text-7xl font-bold leading-tight">
+                        Adesina <span class="gradient-text">Isreal</span>
+                        <span class="block text-2xl md:text-3xl font-mono text-gray-400 mt-4 terminal-cursor">SWAL-AI Architect</span>
+                    </h1>
+                    
+                    <p class="text-lg text-gray-400 max-w-xl leading-relaxed">
+                        Building the future at the intersection of <span class="text-gold-400">AI</span>, 
+                        <span class="text-gold-400">cybersecurity</span>, and 
+                        <span class="text-gold-400">creative technology</span>. 
+                        Founder of SWAL Organization, creating intelligent systems that empower the next generation of creators.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#projects" class="px-8 py-4 bg-gold-400 text-dark-900 rounded-full font-bold hover:bg-gold-500 transition-all transform hover:scale-105">
+                            View Projects <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="https://github.com/EazeAi666" target="_blank" class="px-8 py-4 border border-white/20 text-white rounded-full font-medium hover:bg-white/5 transition-all">
+                            <i class="fab fa-github mr-2"></i> GitHub
+                        </a>
+                    </div>
+                    
+                    <div class="flex items-center space-x-6 text-gray-500 text-sm font-mono">
+                        <span><i class="fas fa-map-marker-alt mr-2"></i>Lagos, Nigeria</span>
+                        <span><i class="fas fa-envelope mr-2"></i>isrealadesina3@gmail.com</span>
+                    </div>
+                </div>
+                
+                <!-- Hero Image - Magazine Cover -->
+                <div class="relative z-10">
+                    <div class="magazine-showcase relative w-full aspect-[3/4] max-w-md mx-auto shadow-2xl">
+                        <div class="absolute inset-0 bg-gradient-to-br from-gold-400/20 to-transparent rounded-2xl blur-3xl animate-pulse-slow -z-10"></div>
+                        
+                        <!-- Your Magazine Cover Image -->
+                        <img src="9492.jpg" alt="Adesina Isreal - Creative Technologist" 
+                             class="relative w-full h-full object-cover rounded-2xl shadow-2xl">
+                        
+                        <!-- Floating Badge -->
+                        <div class="absolute top-4 right-4 bg-gold-400 text-dark-900 px-3 py-1 rounded-full text-xs font-bold">
+                            FEATURED
+                        </div>
+
+                        <!-- Overlay on Hover -->
+                        <div class="magazine-overlay rounded-b-2xl">
+                            <p class="text-gold-400 font-mono text-sm mb-1">Visual EAZE Studios</p>
+                            <p class="text-white font-bold">Creative Director & AI Architect</p>
+                        </div>
+                        
+                        <!-- Floating Stats -->
+                        <div class="absolute -bottom-6 -right-6 bg-dark-800/90 backdrop-blur-md p-4 rounded-2xl border border-gold-400/20 shadow-xl">
+                            <div class="text-2xl font-bold gradient-text">11+</div>
+                            <div class="text-xs text-gray-400">Repositories</div>
+                        </div>
+                        
+                        <div class="absolute -top-6 -left-6 bg-dark-800/90 backdrop-blur-md p-4 rounded-2xl border border-gold-400/20 shadow-xl">
+                            <div class="text-2xl font-bold gradient-text">5+</div>
+                            <div class="text-xs text-gray-400">Active Projects</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-gold-400 text-xl"></i>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="py-20 bg-dark-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover p-6 rounded-2xl bg-dark-800">
+                    <div class="w-12 h-12 bg-gold-400/10 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-gold-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Cybersecurity</h3>
+                    <p class="text-gray-400 text-sm">Endpoint security, network protection, threat identification, and secure workspace architecture.</p>
+                </div>
+                
+                <div class="card-hover p-6 rounded-2xl bg-dark-800">
+                    <div class="w-12 h-12 bg-gold-400/10 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-brain text-gold-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">AI Systems</h3>
+                    <p class="text-gray-400 text-sm">Building SWAL-AI architecture, intelligent agents, and hybrid reasoning systems with Claude integration.</p>
+                </div>
+                
+                <div class="card-hover p-6 rounded-2xl bg-dark-800">
+                    <div class="w-12 h-12 bg-gold-400/10 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-palette text-gold-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Creative Tech</h3>
+                    <p class="text-gray-400 text-sm">Full-stack development, UI/UX design, visual branding, and educational platform architecture.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Showcase Section (Your Image Gallery) -->
+    <section id="visuals" class="py-24 bg-dark-900 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-dark-800/20 to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Visual <span class="gradient-text">Identity</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Creative direction and visual storytelling through the lens of modern frontier aesthetics.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <!-- Main Featured Image -->
+                <div class="magazine-showcase aspect-[3/4] relative group">
+                    <img src="9492.jpg" alt="Cowboy Life Magazine Cover" 
+                         class="w-full h-full object-cover rounded-2xl">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent rounded-2xl"></div>
+                    <div class="absolute bottom-0 left-0 p-8">
+                        <span class="text-gold-400 font-mono text-sm tracking-wider">EDITORIAL</span>
+                        <h3 class="text-2xl font-bold mt-2">Modern Frontier</h3>
+                        <p class="text-gray-400 text-sm mt-2">Stories from the trail of creative technology</p>
+                    </div>
+                </div>
+
+                <!-- Image Details / Stats -->
+                <div class="space-y-8">
+                    <div class="p-6 rounded-2xl bg-dark-800/50 border border-white/5">
+                        <h4 class="text-lg font-bold mb-4 flex items-center">
+                            <i class="fas fa-camera text-gold-400 mr-3"></i>
+                            Visual EAZE Studios
+                        </h4>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                            Professional creative direction combining rugged authenticity with cutting-edge digital aesthetics. 
+                            This visual identity represents the intersection of traditional craftsmanship and modern AI innovation.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag px-3 py-1 rounded-full text-xs">Editorial Design</span>
+                            <span class="tag px-3 py-1 rounded-full text-xs">Brand Identity</span>
+                            <span class="tag px-3 py-1 rounded-full text-xs">Visual Storytelling</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl bg-dark-800 text-center">
+                            <div class="text-2xl font-bold gradient-text">Sony A1</div>
+                            <div class="text-xs text-gray-500 mt-1">Shot on</div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-dark-800 text-center">
+                            <div class="text-2xl font-bold gradient-text">2024</div>
+                            <div class="text-xs text-gray-500 mt-1">Published</div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-gradient-to-r from-gold-400/10 to-transparent border border-gold-400/20">
+                        <p class="text-sm italic text-gray-300">
+                            "The modern cowboy doesn't ride horses—he rides algorithms. 
+                            Same grit, new frontier."
+                        </p>
+                        <div class="mt-3 flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-gold-400/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-quote-right text-gold-400 text-xs"></i>
+                            </div>
+                            <span class="text-xs text-gold-400 font-mono">Creative Director</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Featured <span class="gradient-text">Projects</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Building the infrastructure for tomorrow's creators. Each project represents a pillar of the SWAL ecosystem.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1: SWAL-Terminal -->
+                <div class="project-card rounded-2xl p-6 card-hover group">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-terminal text-white text-xl"></i>
+                        </div>
+                        <span class="text-xs font-mono text-gray-500">Education</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-gold-400 transition-colors">SWAL Terminal</h3>
+                    <p class="text-gray-400 text-sm mb-4">High-performance chat and collaborative learning platform with terminal-style interface. "Execute. Learn. Connect."</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag px-2 py-1 rounded text-xs">TypeScript</span>
+                        <span class="tag px-2 py-1 rounded text-xs">React</span>
+                        <span class="tag px-2 py-1 rounded text-xs">Firebase</span>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="https://github.com/EazeAi666/SWAL-Terminal-" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gold-400 transition-colors">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2: Linkxus -->
+                <div class="project-card rounded-2xl p-6 card-hover group">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-newspaper text-white text-xl"></i>
+                        </div>
+                        <span class="text-xs font-mono text-gray-500">News Platform</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-gold-400 transition-colors">Linkxus</h3>
+                    <p class="text-gray-400 text-sm mb-4">AI-powered news aggregation platform delivering real-time updates across tech, crypto, sports, and global markets.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag px-2 py-1 rounded text-xs">HTML5</span>
+                        <span class="tag px-2 py-1 rounded text-xs">Tailwind</span>
+                        <span class="tag px-2 py-1 rounded text-xs">Firebase</span>
+                        <span class="tag px-2 py-1 rounded text-xs">SWAL-AI</span>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="https://github.com/EazeAi666/Linkxus" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gold-400 transition-colors">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3: SWAL-Learn -->
+                <div class="project-card rounded-2xl p-6 card-hover group">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <span class="text-xs font-mono text-gray-500">Education</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-gold-400 transition-colors">SWAL Learn</h3>
+                    <p class="text-gray-400 text-sm mb-4">Free AI courses platform with interactive modules, quizzes, and progress tracking. Making AI education accessible.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag px-2 py-1 rounded text-xs">HTML</span>
+                        <span class="tag px-2 py-1 rounded text-xs">CSS</span>
+                        <span class="tag px-2 py-1 rounded text-xs">JavaScript</span>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="https://github.com/EazeAi666/Swal-learn" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://eazeai666.github.io/Swal-learn/courses/ai-basics.html" target="_blank" class="text-gray-400 hover:text-gold-400 transition-colors">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 4: EAZE Secure -->
+                <div class="project-card rounded-2xl p-6 card-hover group">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-red-600 to-pink-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-lock text-white text-xl"></i>
+                        </div>
+                        <span class="text-xs font-mono text-gray-500">Cybersecurity</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-gold-400 transition-colors">EAZE Secure</h3>
+                    <p class="text-gray-400 text-sm mb-4">Real-time cybersecurity dashboard for managing digital workspaces. Temporary team access, session monitoring, and threat detection.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag px-2 py-1 rounded text-xs">HTML</span>
+                        <span class="tag px-2 py-1 rounded text-xs">CSS</span>
+                        <span class="tag px-2 py-1 rounded text-xs">Vercel</span>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="https://github.com/EazeAi666/EAZE-SECURE-Cyber-Work-space-" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://eaze-secure-cyber-work-space.vercel.app/" target="_blank" class="text-gray-400 hover:text-gold-400 transition-colors">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 5: Future Stack Academy -->
+                <div class="project-card rounded-2xl p-6 card-hover group">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-rocket text-white text-xl"></i>
+                        </div>
+                        <span class="text-xs font-mono text-gray-500">Creative Education</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-gold-400 transition-colors">Future Stack Academy</h3>
+                    <p class="text-gray-400 text-sm mb-4">Independent online creative education platform for the next generation of designers and visual thinkers. Founded 2026.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag px-2 py-1 rounded text-xs">HTML</span>
+                        <span class="tag px-2 py-1 rounded text-xs">CSS</span>
+                        <span class="tag px-2 py-1 rounded text-xs">MIT License</span>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="https://github.com/EazeAi666/Future-Stack-Academy-" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gold-400 transition-colors">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 6: SWAL-VPN -->
+                <div class="project-card rounded-2xl p-6 card-hover group">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-network-wired text-white text-xl"></i>
+                        </div>
+                        <span class="text-xs font-mono text-gray-500">Network Security</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-gold-400 transition-colors">SWAL VPN</h3>
+                    <p class="text-gray-400 text-sm mb-4">High-performance, secure VPN solution utilizing OpenVPN/WireGuard protocols for robust encryption and low latency.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag px-2 py-1 rounded text-xs">TypeScript</span>
+                        <span class="tag px-2 py-1 rounded text-xs">Network</span>
+                        <span class="tag px-2 py-1 rounded text-xs">Security</span>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="https://github.com/EazeAi666/SWAL-VPN" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-24 bg-dark-800/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-4xl font-bold mb-2">Latest <span class="gradient-text">Writings</span></h2>
+                    <p class="text-gray-400">Thoughts on AI, cybersecurity, and creative technology</p>
+                </div>
+                <a href="#" class="hidden md:flex items-center text-gold-400 hover:text-gold-500 transition-colors">
+                    View All <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Blog Post 1 -->
+                <article class="card-hover rounded-2xl overflow-hidden bg-dark-800 group cursor-pointer">
+                    <div class="h-48 bg-gradient-to-br from-gold-400/20 to-orange-500/20 flex items-center justify-center">
+                        <i class="fas fa-robot text-6xl text-gold-400/30 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2 text-xs text-gray-500 mb-3">
+                            <span>AI Architecture</span>
+                            <span>•</span>
+                            <span>Apr 12, 2026</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 group-hover:text-gold-400 transition-colors">Building Hybrid Memory Systems for LLM Agents</h3>
+                        <p class="text-gray-400 text-sm mb-4">Exploring the implementation of Zettelkasten-style linking with SQLite and vector embeddings for persistent agent memory.</p>
+                        <span class="text-gold-400 text-sm font-medium">Read More →</span>
+                    </div>
+                </article>
+
+                <!-- Blog Post 2 -->
+                <article class="card-hover rounded-2xl overflow-hidden bg-dark-800 group cursor-pointer">
+                    <div class="h-48 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-6xl text-blue-400/30 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2 text-xs text-gray-500 mb-3">
+                            <span>Cybersecurity</span>
+                            <span>•</span>
+                            <span>Apr 8, 2026</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 group-hover:text-gold-400 transition-colors">Real-time Threat Detection with EAZE Secure</h3>
+                        <p class="text-gray-400 text-sm mb-4">How we built a cybersecurity dashboard that monitors 24 nodes, detects C2 beacons, and manages temporary team access.</p>
+                        <span class="text-gold-400 text-sm font-medium">Read More →</span>
+                    </div>
+                </article>
+
+                <!-- Blog Post 3 -->
+                <article class="card-hover rounded-2xl overflow-hidden bg-dark-800 group cursor-pointer">
+                    <div class="h-48 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-6xl text-purple-400/30 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2 text-xs text-gray-500 mb-3">
+                            <span>Education</span>
+                            <span>•</span>
+                            <span>Mar 15, 2026</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 group-hover:text-gold-400 transition-colors">The Future of AI Education: SWAL Learn Approach</h3>
+                        <p class="text-gray-400 text-sm mb-4">Why we built a free AI learning platform with interactive quizzes and how gamification improves retention in technical education.</p>
+                        <span class="text-gold-400 text-sm font-medium">Read More →</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-4xl font-bold gradient-text mb-2">11+</div>
+                    <div class="text-gray-400 text-sm">GitHub Repositories</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold gradient-text mb-2">5</div>
+                    <div class="text-gray-400 text-sm">Active Projects</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold gradient-text mb-2">3</div>
+                    <div class="text-gray-400 text-sm">Live Platforms</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold gradient-text mb-2">∞</div>
+                    <div class="text-gray-400 text-sm">Learning</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold mb-4">Let's Build <span class="gradient-text">Together</span></h2>
+            <p class="text-gray-400 mb-12 max-w-xl mx-auto">Open for collaboration on AI systems, cybersecurity projects, and creative technology ventures.</p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12">
+                <a href="mailto:isrealadesina3@gmail.com" class="px-8 py-4 bg-gold-400 text-dark-900 rounded-full font-bold hover:bg-gold-500 transition-all">
+                    <i class="fas fa-envelope mr-2"></i> isrealadesina3@gmail.com
+                </a>
+                <a href="tel:09042021352" class="px-8 py-4 border border-white/20 text-white rounded-full font-medium hover:bg-white/5 transition-all">
+                    <i class="fas fa-phone mr-2"></i> 09042021352
+                </a>
+            </div>
+            
+            <div class="flex justify-center space-x-6">
+                <a href="https://github.com/EazeAi666" target="_blank" class="w-12 h-12 rounded-full bg-dark-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-dark-700 transition-all">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 rounded-full bg-dark-800 flex items-center justify-center text-gray-400 hover:text-blue-400 hover:bg-dark-700 transition-all">
+                    <i class="fab fa-linkedin text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 rounded-full bg-dark-800 flex items-center justify-center text-gray-400 hover:text-pink-400 hover:bg-dark-700 transition-all">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 rounded-full bg-dark-800 flex items-center justify-center text-gray-400 hover:text-sky-400 hover:bg-dark-700 transition-all">
+                    <i class="fab fa-twitter text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-white/5 bg-dark-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center space-x-3 mb-4 md:mb-0">
+                <img src="swal-logo.svg" alt="SWAL" class="w-8 h-8">
+                <span class="font-mono text-sm text-gray-500">© 2026 SWAL Organization. All rights reserved.</span>
+            </div>
+            <div class="flex space-x-6 text-sm text-gray-500">
+                <a href="#" class="hover:text-gold-400 transition-colors">Privacy</a>
+                <a href="#" class="hover:text-gold-400 transition-colors">Terms</a>
+                <a href="#" class="hover:text-gold-400 transition-colors">RSS</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Typing Effect for Terminal Cursor
+        const phrases = ['SWAL-AI Architect', 'Cybersecurity Specialist', 'Creative Technologist', 'CEO Visual EAZE Studios', 'Visual Director'];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typeElement = document.querySelector('.terminal-cursor');
+
+        function typeEffect() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typeElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typeElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeEffect, typeSpeed);
+        }
+
+        // Start typing effect
+        setTimeout(typeEffect, 1000);
+
+        // Scroll Reveal Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply to cards
+        document.querySelectorAll('.project-card, article, .magazine-showcase').forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = `all 0.6s ease ${index * 0.1}s`;
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
